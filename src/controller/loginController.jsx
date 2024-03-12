@@ -26,7 +26,7 @@ const LoginController = ({ username, password }) => {
 
   return (
     <div>
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin}>Iniciar login</button>
       <p>{loginStatus}</p>
     </div>
   );
