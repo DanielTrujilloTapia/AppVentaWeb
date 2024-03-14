@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../App.css'; // Importa los estilos CSS
+import '../HomeStyle.css'; // Importa los estilos CSS
 
 function HomeAdController() {
   const [userData, setUserData] = useState([]);

@@ -1,7 +1,7 @@
 /* Estilos para el contenedor del login */
 html, body {
   height: 100%; /* Asegura que el contenedor principal ocupe toda la altura */
-  margin: 0;
+  margin: 10;
   display: flex; /* Usa flexbox */
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
@@ -12,7 +12,7 @@ html, body {
   margin: 0 auto; /* Centra el contenedor horizontalmente */
   padding: 20px; /* Añade un poco de espacio interno */
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #f9f9f9;
 }
 /* Estilos para el contenedor del login en dispositivos pequeños */
@@ -47,34 +47,27 @@ html, body {
   background-color: #0056b3;
 }
 
-/* HomeAdView.css */
-.homead-view-container {
-  width: 80%; /* Ancho del contenedor */
-  margin: 20px auto; /* Centra horizontalmente */
-}
-
-/* HomeAdController.css */
-.homead-table-container {
-  overflow-x: auto; /* Añade scroll horizontal si el contenido excede el ancho */
-}
-
+/* Estilo para la tabla del home */
 .homead-table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leve sombreado */
 }
 
 .homead-table th,
 .homead-table td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0; /* Línea divisoria */
 }
 
 .homead-table th {
-  background-color: #f2f2f2;
+  background-color: #f5f5f5; /* Color de fondo para encabezados */
   font-weight: bold;
-  text-align: left;
 }
 
 .homead-table tr:hover {
-  background-color: #f5f5f5;
+  background-color: #fafafa; /* Color de fondo al pasar el mouse */
 }

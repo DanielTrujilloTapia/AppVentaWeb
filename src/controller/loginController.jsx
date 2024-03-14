@@ -14,15 +14,16 @@ const LoginController = ({ username, password }) => {
 
       if (userFound) {
         // Mostrar una alerta de éxito
-        Swal.fire({
+        Swal.fire({ 
           icon: 'success',
           title: '¡Inicio de sesión exitoso!',
-          showConfirmButton: false,
-          timer: 3000 // Cierra automáticamente después de 1.5 segundos
+          text: 'Ok'
+        }).then((result) => {
+          if (result.isConfirmed || result.isDismissed) {
+            // Redireccionar a la página de inicio después de que se cierre la alerta
+            window.location.href = '/home';
+          }
         });
-
-        // Redireccionar a la página de inicio
-        window.location.href = '/home';
       } else {
         // Mostrar SweetAlert de error
         Swal.fire({

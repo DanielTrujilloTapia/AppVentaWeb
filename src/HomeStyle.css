@@ -1,0 +1,24 @@
+.homead-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leve sombreado */
+  }
+  
+  .homead-table th,
+  .homead-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0; /* Línea divisoria */
+  }
+  
+  .homead-table th {
+    background-color: #f5f5f5; /* Color de fondo para encabezados */
+    font-weight: bold;
+  }
+  
+  .homead-table tr:hover {
+    background-color: #fafafa; /* Color de fondo al pasar el mouse */
+  }
+  
