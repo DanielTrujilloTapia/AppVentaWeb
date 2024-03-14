@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import '../App.css'; // Importa los estilos CSS
 
 function HomeAdController() {
   const [userData, setUserData] = useState([]);
@@ -56,8 +57,9 @@ function HomeAdController() {
   }, []);
 
   return (
-    <div>
-      <table>
+    <div className="homead-controller-container"> 
+      <h1>Tabla de Usuarios</h1>
+      <table className="homead-table"> 
         <thead>
           <tr>
             <th>ID</th>
