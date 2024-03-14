@@ -1,42 +1,125 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Estilos para el contenedor del login */
+.login-container {
+  width: 80%; /* Ancho del contenedor */
+  max-width: 400px; /* Ancho máximo para dispositivos grandes */
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  padding: 20px; /* Añade un poco de espacio interno */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+/* Estilos para el contenedor del login en dispositivos pequeños */
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%; /* Reducir el ancho del contenedor en dispositivos pequeños */
+    max-width: none; /* Eliminar el ancho máximo */
+  }
+}
+
+
+.login-input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.homead-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.homead-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.homead-table th,
+.homead-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.homead-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+.homead-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.homead-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.homead-container h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.homead-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.homead-table th,
+.homead-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.homead-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
 }
 
-.card {
-  padding: 2em;
+.homead-table tr:hover {
+  background-color: #f5f5f5;
 }
 
-.read-the-docs {
-  color: #888;
+/* HomeAdController.css */
+.homead-controller-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.homead-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.homead-table th,
+.homead-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.homead-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+.homead-table tr:hover {
+  background-color: #f5f5f5;
 }

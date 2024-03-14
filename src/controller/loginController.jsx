@@ -1,32 +1,55 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types'; // Importa PropTypes
+import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 
 const LoginController = ({ username, password }) => {
   const [loginStatus, setLoginStatus] = useState(null);
 
   const handleLogin = async () => {
     try {
-      // Realizar un fetch para obtener datos de la base de datos
       const response = await fetch('https://localhost:7199/api/Usu_Usuarios');
       const users = await response.json();
 
-      // Validar las credenciales
       const userFound = users.find((usu_usuario) => usu_usuario.nom_usuario === username && usu_usuario.contrasena === password);
 
       if (userFound) {
-        setLoginStatus('¡Inicio de sesión exitoso!');
+        // Mostrar una alerta de éxito
+        Swal.fire({
+          icon: 'success',
+          title: '¡Inicio de sesión exitoso!',
+          showConfirmButton: false,
+          timer: 3000 // Cierra automáticamente después de 1.5 segundos
+        });
+
+        // Redireccionar a la página de inicio
+        window.location.href = '/home';
       } else {
+        // Mostrar SweetAlert de error
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales incorrectas',
+          text: 'Por favor, verifica tus credenciales e inténtalo de nuevo.'
+        });
+      
+        // Actualizar el estado loginStatus
         setLoginStatus('Credenciales incorrectas. Inténtalo de nuevo.');
       }
     } catch (error) {
       console.error('Error al obtener datos de la base de datos:', error);
       setLoginStatus('Error al iniciar sesión. Inténtalo más tarde.');
+
+      // Mostrar una alerta de error
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al iniciar sesión',
+        text: 'Inténtalo más tarde.'
+      });
     }
   };
-
+  
   return (
     <div>
-      <button onClick={handleLogin}>Iniciar login</button>
+      <button className='login-button' onClick={handleLogin}>Iniciar sesión</button>
       <p>{loginStatus}</p>
     </div>
   );

@@ -1,11 +1,12 @@
+  //Componente loginView
   import { useState } from 'react';
-  import LoginController from '../controller/HomeAdController.jsx'; // Importa el componente LoginController
-
+  import LoginController from '../controller/loginController.jsx'; 
+  import '../App.css'
   const LoginView = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (e) => {
+    const handleUsernameChange = (e) => { 
       setUsername(e.target.value);
     };
 

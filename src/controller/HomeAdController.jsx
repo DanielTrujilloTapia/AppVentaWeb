@@ -57,7 +57,6 @@ function HomeAdController() {
 
   return (
     <div>
-      <h1>Tabla de Usuarios</h1>
       <table>
         <thead>
           <tr>
