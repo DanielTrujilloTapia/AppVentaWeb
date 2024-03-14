@@ -17,7 +17,6 @@ const LoginController = ({ username, password }) => {
         Swal.fire({ 
           icon: 'success',
           title: '¡Inicio de sesión exitoso!',
-          text: 'Ok'
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
             // Redireccionar a la página de inicio después de que se cierre la alerta
