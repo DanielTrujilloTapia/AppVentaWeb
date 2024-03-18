@@ -56,6 +56,14 @@ function HomeAdController() {
     fetchData();
   }, []);
 
+  const handleEdit = (userId) => {
+    // Lógica para editar el usuario con el ID especificado
+  };
+
+  const handleDelete = (userId) => {
+    // Lógica para eliminar el usuario con el ID especificado
+  };
+
   return (
     <div className="homead-controller-container"> 
       <h1>Tabla de Usuarios</h1>
@@ -69,6 +77,7 @@ function HomeAdController() {
             <th>Descripción Estado</th>
             <th>Tipo cuenta</th>
             <th>Descripción del Tipo</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -81,6 +90,10 @@ function HomeAdController() {
               <td>{user.estado_descripcion}</td>
               <td>{user.tipo_cuenta_nombre}</td>
               <td>{user.tipo_cuenta_descripcion}</td>
+              <td>
+                <button onClick={() => handleEdit(user.id_usuario)}>Editar</button>
+                <button onClick={() => handleDelete(user.id_usuario)}>Eliminar</button>
+              </td>
             </tr>
           ))}
         </tbody>
