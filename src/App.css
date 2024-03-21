@@ -5,6 +5,7 @@ html, body {
   display: flex; /* Usa flexbox */
   justify-content: center; /* Centra horizontalmente */
   align-items: center; /* Centra verticalmente */
+  font-family: 'Roboto', sans-serif;
 }
 .login-container {
   width: 80%; /* Ancho del contenedor */

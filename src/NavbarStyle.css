@@ -1,0 +1,33 @@
+/* Estilos para el Navbar */
+nav {
+  background-color: #007bff; /* Color de fondo */
+  padding: 10px 20px; /* Espaciado interno */
+  width: 100%; /* Ancho completo */
+  position: fixed; /* Fijar en la parte superior */
+  top: 0; /* Ubicación en la parte superior */
+  left: 0; /* Alineación a la izquierda */
+  z-index: 1000; /* Z-index alto para superponer sobre otros elementos */
+}
+
+ul {
+  list-style-type: none; /* Quita los puntos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+  margin-right: 20px; /* Espaciado entre elementos */
+}
+
+a {
+  color: #fff; /* Color del texto */
+  text-decoration: none; /* Quita la subrayado del enlace */
+  font-weight: bold; /* Texto en negrita */
+  transition: color 0.3s, text-shadow 0.3s; /* Transición suave para el cambio de color y sombra del texto */
+}
+
+a:hover {
+  color: #ffd700; /* Cambia el color del texto al pasar el mouse */
+  text-shadow: 0 0 10px #ffd700; /* Agrega una sombra al texto al pasar el mouse */
+}

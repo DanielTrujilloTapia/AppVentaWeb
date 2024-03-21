@@ -1,8 +1,10 @@
 import NewUserController from "../controller/NewUserController";
+import '../CreateUsrStyle.css'
+
 
 function NewUserView() {
   return (
-    <div> 
+    <div className="new-user-container"> 
       <NewUserController></NewUserController>
     </div>
   );

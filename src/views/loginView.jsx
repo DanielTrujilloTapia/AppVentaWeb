@@ -33,7 +33,6 @@
           onChange={handlePasswordChange}
         />
         <br />
-        {/* Pasamos las credenciales al componente LoginController */}
         <LoginController username={username} password={password} />
       </div>
     );

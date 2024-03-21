@@ -5,9 +5,10 @@ import '../LoginStyle.css'
 
 function HomeAdView() {
   return (
-    <div> 
-      <HomeAdController />
-    </div>
+  
+    
+    <HomeAdController />
+
   );
 }
 

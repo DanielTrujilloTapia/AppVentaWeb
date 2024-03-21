@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import '../CreateUsrStyle.css';
 
 const NewUserController = () => {
   const [nomUsuario, setNomUsuario] = useState('');
@@ -74,7 +75,7 @@ const NewUserController = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Registro</h2>
       <form onSubmit={handleSubmit}>
         <div>

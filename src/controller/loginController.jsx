@@ -13,13 +13,11 @@ const LoginController = ({ username, password }) => {
       const userFound = users.find((usu_usuario) => usu_usuario.nom_usuario === username && usu_usuario.contrasena === password);
 
       if (userFound) {
-        // Mostrar una alerta de éxito
         Swal.fire({ 
           icon: 'success',
           title: '¡Inicio de sesión exitoso!',
         }).then((result) => {
           if (result.isConfirmed || result.isDismissed) {
-            // Redireccionar a la página de inicio después de que se cierre la alerta
             window.location.href = '/home';
           }
         });
