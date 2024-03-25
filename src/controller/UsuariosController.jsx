@@ -5,9 +5,9 @@ import '../HomeStyle.css'; // Importa los estilos CSS
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
 
-  const apiUrlUsers = 'https://localhost:7199/api/Usu_Usuarios';
-  const apiUrlTipos = 'https://localhost:7199/api/Usu_Cat_Tipos_Usuarios';
-  const apiUrlEstados = 'https://localhost:7199/api/Usu_Cat_Estados';
+  const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
+  const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
+  const apiUrlEstados = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados';
 
   useEffect(() => {
     const fetchData = async () => {

@@ -12,15 +12,15 @@ const NewUserController = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tiposResponse = await fetch('https://localhost:7199/api/Usu_Cat_Tipos_Usuarios');
+        const tiposResponse = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios');
         const tiposData = await tiposResponse.json();
         setTiposUsuarios(tiposData);
       } catch (error) {
         console.error('Error fetching tipos de usuarios:', error);
       }
-
+      
       try {
-        const estadosResponse = await fetch('https://localhost:7199/api/Usu_Cat_Estados');
+        const estadosResponse = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados');
         const estadosData = await estadosResponse.json();
         setEstados(estadosData);
       } catch (error) {
@@ -35,7 +35,7 @@ const NewUserController = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://localhost:7199/api/Usu_Usuarios', {
+      const response = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
