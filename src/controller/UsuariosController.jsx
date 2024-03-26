@@ -65,9 +65,14 @@ function UsuariosController() {
     // Lógica para eliminar el usuario con el ID especificado
   };
 
+  const redirectToRegistro = () => {
+    window.location.href = '/registro';
+  };
+
   return (
     <div className="homead-controller-container"> 
       <h1>Tabla de Usuarios</h1>
+      <button onClick={redirectToRegistro}>Registrar un nuevo usuario</button>
       <table className="homead-table"> 
         <thead>
           <tr>
