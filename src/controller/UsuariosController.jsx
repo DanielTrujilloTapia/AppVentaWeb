@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '..//HomeStyle.css';
+import '../HomeStyle.css';
 
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
@@ -17,13 +17,6 @@ function UsuariosController() {
         }
         const dataUsers = await responseUsers.json();
 
-        const filteredData = dataUsers.filter(user => {
-          return (
-            user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            user.id_usuario.toString().includes(searchTerm.toLowerCase())
-          );
-        });
-
         const responseTipos = await fetch(apiUrlTipos);
         if (!responseTipos.ok) {
           throw new Error('Network response for tipos was not ok');
@@ -36,7 +29,7 @@ function UsuariosController() {
         }
         const dataEstados = await responseEstados.json();
 
-        const combinedData = filteredData.map(user => {
+        const combinedData = dataUsers.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
           const estadoUsuario = dataEstados.find(estado => estado.id_estado === user.idusucatestado);
           return {
@@ -57,7 +50,7 @@ function UsuariosController() {
     };
 
     fetchData();
-  }, [searchTerm]);
+  }, []);
 
   const handleEdit = (userId) => {
     // Lógica para editar el usuario con el ID especificado
@@ -71,10 +64,35 @@ function UsuariosController() {
     window.location.href = '/crear';
   };
 
+  // Función de búsqueda
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+  };
+
+  // Filtrar usuarios basados en el término de búsqueda
+  const filteredUsers = userData.filter(user => {
+    return (
+      user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.id_usuario.toString().includes(searchTerm.toLowerCase())
+    );
+  });
+
   return (
     <div className="homead-controller-container">
-      <h1>Tabla de Usuarios</h1>
+    <h1>Tabla de Usuarios</h1>
+    <div className="search-container">
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Buscar usuario..."
+        className="search-input"
+        style={{ width: 'calc(100% - 200px)' }} // Ajusta el ancho de la barra de búsqueda
+      />
       <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo usuario</button>
+    </div>
+
       <table className="homead-table"> 
         <thead>
           <tr>
@@ -89,7 +107,7 @@ function UsuariosController() {
           </tr>
         </thead>
         <tbody>
-          {userData.map(user => (
+          {filteredUsers.map(user => (
             <tr key={user.id_usuario}>
               <td>{user.id_usuario}</td>
               <td>{user.nom_usuario}</td>
