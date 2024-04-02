@@ -6,8 +6,10 @@ import '../LoginStyle.css'
 function HomeAdView() {
   return (
   
-    
-    <HomeAdController />
+    <div>
+    <h1>Bienvenido</h1>
+    <p>¡Has iniciado sesión correctamente!</p>
+  </div>
 
   );
 }

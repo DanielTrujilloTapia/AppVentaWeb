@@ -72,3 +72,56 @@ html, body {
 .homead-table tr:hover {
   background-color: #fafafa; /* Color de fondo al pasar el mouse */
 }
+
+
+/*Estilos para la barra de busqueda*/
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.search-button {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/*Estilos para los botones de la tabla*/
+/* En tu archivo HomeStyle.css */
+.search-button,
+.edit-button,
+.delete-button {
+  width: auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px; /* Espacio entre botones */
+}
+
+/* Añade cualquier otro estilo específico que desees */

@@ -1,10 +1,9 @@
-import  { useEffect, useState } from 'react';
-
-import '../HomeStyle.css'; // Importa los estilos CSS
+import React, { useEffect, useState } from 'react';
+import '../HomeStyle.css';
 
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState('');
   const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
   const apiUrlEstados = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados';
@@ -12,29 +11,32 @@ function UsuariosController() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch de usuarios
         const responseUsers = await fetch(apiUrlUsers); 
         if (!responseUsers.ok) {
           throw new Error('Network response for users was not ok');
         }
         const dataUsers = await responseUsers.json();
 
-        // Fetch de tipos de usuarios
+        const filteredData = dataUsers.filter(user => {
+          return (
+            user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            user.id_usuario.toString().includes(searchTerm.toLowerCase())
+          );
+        });
+
         const responseTipos = await fetch(apiUrlTipos);
         if (!responseTipos.ok) {
           throw new Error('Network response for tipos was not ok');
         }
         const dataTipos = await responseTipos.json();
 
-        // Fetch de estados de usuarios
         const responseEstados = await fetch(apiUrlEstados);
         if (!responseEstados.ok) {
           throw new Error('Network response for estados was not ok');
         }
         const dataEstados = await responseEstados.json();
 
-        // Combinar datos de usuarios con tipos y estados
-        const combinedData = dataUsers.map(user => {
+        const combinedData = filteredData.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
           const estadoUsuario = dataEstados.find(estado => estado.id_estado === user.idusucatestado);
           return {
@@ -55,7 +57,7 @@ function UsuariosController() {
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm]);
 
   const handleEdit = (userId) => {
     // Lógica para editar el usuario con el ID especificado
@@ -66,9 +68,19 @@ function UsuariosController() {
   };
 
   return (
-    <div className="homead-controller-container"> 
+    <div className="homead-controller-container">
       <h1>Tabla de Usuarios</h1>
-      <table className="homead-table"> 
+      <div className="search-container">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Buscar usuario..."
+          className="search-input"
+        />
+        <button className="search-button">Buscar</button>
+      </div>
+      <table className="homead-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -92,8 +104,8 @@ function UsuariosController() {
               <td>{user.tipo_cuenta_nombre}</td>
               <td>{user.tipo_cuenta_descripcion}</td>
               <td>
-                <button onClick={() => handleEdit(user.id_usuario)}>Editar</button>
-                <button onClick={() => handleDelete(user.id_usuario)}>Eliminar</button>
+                <button onClick={() => handleEdit(user.id_usuario)} className="edit-button">Editar</button>
+                <button onClick={() => handleDelete(user.id_usuario)} className="delete-button">Eliminar</button>
               </td>
             </tr>
           ))}
