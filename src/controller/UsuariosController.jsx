@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../HomeStyle.css';
+import '..//HomeStyle.css';
 
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
@@ -67,20 +67,15 @@ function UsuariosController() {
     // Lógica para eliminar el usuario con el ID especificado
   };
 
+  const redirectToRegistro = () => {
+    window.location.href = '/crear';
+  };
+
   return (
     <div className="homead-controller-container">
       <h1>Tabla de Usuarios</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Buscar usuario..."
-          className="search-input"
-        />
-        <button className="search-button">Buscar</button>
-      </div>
-      <table className="homead-table">
+      <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo usuario</button>
+      <table className="homead-table"> 
         <thead>
           <tr>
             <th>ID</th>
