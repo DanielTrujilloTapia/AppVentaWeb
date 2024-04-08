@@ -6,6 +6,8 @@ function UsuariosController() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEstado, setSelectedEstado] = useState('');
   const [selectedTipoUsuario, setSelectedTipoUsuario] = useState('');
+  const [estadosUsuario, setEstadosUsuario] = useState([]); // Nuevo estado para almacenar los datos de los estados
+
   const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
   const apiUrlEstados = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados';
@@ -33,15 +35,15 @@ function UsuariosController() {
 
         console.log('Data Estados:', dataEstados); // Verificar los datos de estados recibidos
 
+        setEstadosUsuario(dataEstados); // Almacenar datos de estados en el estado
+
         const combinedData = dataUsers.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
-          const estadoUsuario = dataEstados.find(estado => estado.id_estado === user.idusucatestado);
           return {
             id_usuario: user.id_usuario,
             nom_usuario: user.nom_usuario,
             contrasena: user.contrasena,
-            estado_nombre: estadoUsuario ? estadoUsuario.nom_estado : '', // Corregido aquí
-            estado_descripcion: estadoUsuario ? estadoUsuario.descripcion_estado : '', // Corregido aquí
+            estado_id: user.idusucatestado, // Cambiar a identificador de estado
             tipo_cuenta_nombre: tipoUsuario ? tipoUsuario.nom_tipo : '',
             tipo_cuenta_descripcion: tipoUsuario ? tipoUsuario.descripcion_tipo : ''
           };
@@ -50,7 +52,7 @@ function UsuariosController() {
         const filteredData = combinedData.filter(user => {
           return (
             user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (selectedEstado === '' || user.estado_nombre.toLowerCase() === selectedEstado.toLowerCase()) &&
+            (selectedEstado === '' || user.estado_id === parseInt(selectedEstado)) && // Utilizar identificador de estado
             (selectedTipoUsuario === '' || user.tipo_cuenta_nombre.toLowerCase() === selectedTipoUsuario.toLowerCase())
           );
         });
@@ -95,10 +97,9 @@ function UsuariosController() {
           className="filter-dropdown"
         >
           <option value="">Todos los estados</option>
-          <option value="activo">Activo</option>
-          <option value="inactivo">Inactivo</option>
-          <option value="suspendido">Suspendido</option>
-
+          {estadosUsuario.map(estado => (
+            <option key={estado.id_estado} value={estado.id_estado}>{estado.nom_estado}</option>
+          ))}
         </select>
         <select
           value={selectedTipoUsuario}
@@ -119,7 +120,6 @@ function UsuariosController() {
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>Estado</th>
-            <th>Descripción Estado</th>
             <th>Tipo cuenta</th>
             <th>Descripción del Tipo</th>
             <th>Acciones</th>
@@ -132,7 +132,6 @@ function UsuariosController() {
               <td>{user.nom_usuario}</td>
               <td>{user.contrasena}</td>
               <td>{user.estado_nombre}</td>
-              <td>{user.estado_descripcion}</td>
               <td>{user.tipo_cuenta_nombre}</td>
               <td>{user.tipo_cuenta_descripcion}</td>
               <td>
