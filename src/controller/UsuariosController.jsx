@@ -7,6 +7,7 @@ function UsuariosController() {
   const [selectedEstado, setSelectedEstado] = useState('');
   const [selectedTipoUsuario, setSelectedTipoUsuario] = useState('');
   const [estadosUsuario, setEstadosUsuario] = useState([]);
+  const [tiposUsuario, setTiposUsuario] = useState([]);
 
   const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
@@ -34,6 +35,7 @@ function UsuariosController() {
         const dataEstados = await responseEstados.json();
 
         setEstadosUsuario(dataEstados);
+        setTiposUsuario(dataTipos);
 
         const combinedData = dataUsers.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
@@ -44,6 +46,7 @@ function UsuariosController() {
             contrasena: user.contrasena,
             estado_id: user.idusucatestado,
             estado_nombre: estadoUsuario ? estadoUsuario.nom_estado : '',
+            tipo_cuenta_id: user.idusucattipousuario,
             tipo_cuenta_nombre: tipoUsuario ? tipoUsuario.nom_tipo : '',
             tipo_cuenta_descripcion: tipoUsuario ? tipoUsuario.descripcion_tipo : ''
           };
@@ -53,7 +56,7 @@ function UsuariosController() {
           return (
             user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) &&
             (selectedEstado === '' || user.estado_id === parseInt(selectedEstado)) &&
-            (selectedTipoUsuario === '' || user.tipo_cuenta_nombre.toLowerCase() === selectedTipoUsuario.toLowerCase())
+            (selectedTipoUsuario === '' || user.tipo_cuenta_id === parseInt(selectedTipoUsuario))
           );
         });
 
@@ -105,8 +108,9 @@ function UsuariosController() {
           className="filter-dropdown"
         >
           <option value="">Todos los tipos de usuario</option>
-          <option value="admin">Administrador</option>
-          <option value="empleado">Empleado</option>
+          {tiposUsuario.map(tipo => (
+            <option key={tipo.id_tipo} value={tipo.id_tipo}>{tipo.nom_tipo}</option>
+          ))}
         </select>
 
         <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo usuario</button>
