@@ -6,7 +6,7 @@ function UsuariosController() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEstado, setSelectedEstado] = useState('');
   const [selectedTipoUsuario, setSelectedTipoUsuario] = useState('');
-  const [estadosUsuario, setEstadosUsuario] = useState([]); // Nuevo estado para almacenar los datos de los estados
+  const [estadosUsuario, setEstadosUsuario] = useState([]);
 
   const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
@@ -33,17 +33,17 @@ function UsuariosController() {
         }
         const dataEstados = await responseEstados.json();
 
-        console.log('Data Estados:', dataEstados); // Verificar los datos de estados recibidos
-
-        setEstadosUsuario(dataEstados); // Almacenar datos de estados en el estado
+        setEstadosUsuario(dataEstados);
 
         const combinedData = dataUsers.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
+          const estadoUsuario = dataEstados.find(estado => estado.id_estado === user.idusucatestado);
           return {
             id_usuario: user.id_usuario,
             nom_usuario: user.nom_usuario,
             contrasena: user.contrasena,
-            estado_id: user.idusucatestado, // Cambiar a identificador de estado
+            estado_id: user.idusucatestado,
+            estado_nombre: estadoUsuario ? estadoUsuario.nom_estado : '',
             tipo_cuenta_nombre: tipoUsuario ? tipoUsuario.nom_tipo : '',
             tipo_cuenta_descripcion: tipoUsuario ? tipoUsuario.descripcion_tipo : ''
           };
@@ -52,12 +52,10 @@ function UsuariosController() {
         const filteredData = combinedData.filter(user => {
           return (
             user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (selectedEstado === '' || user.estado_id === parseInt(selectedEstado)) && // Utilizar identificador de estado
+            (selectedEstado === '' || user.estado_id === parseInt(selectedEstado)) &&
             (selectedTipoUsuario === '' || user.tipo_cuenta_nombre.toLowerCase() === selectedTipoUsuario.toLowerCase())
           );
         });
-
-        console.log('Filtered Data:', filteredData); // Verificar los datos filtrados
 
         setUserData(filteredData);
       } catch (error) {
