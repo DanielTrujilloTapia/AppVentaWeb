@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function ProductosController() {
   const [productosData, setProductosData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategoria, setSelectedCategoria] = useState('');
   const [selectedSubcategoria, setSelectedSubcategoria] = useState('');
+  const [categorias, setCategorias] = useState([]);
+  const [subcategorias, setSubcategorias] = useState([]);
+
   const apiUrlProductos = 'https://localhost:7199/api/Pro_Productos';
   const apiUrlCategorias = 'https://localhost:7199/api/Pro_Cat_Categorias';
   const apiUrlSubcategorias = 'https://localhost:7199/api/Pro_Cat_Subcategorias';
@@ -29,6 +32,9 @@ function ProductosController() {
           throw new Error('Network response for subcategorias was not ok');
         }
         const dataSubcategorias = await responseSubcategorias.json();
+
+        setCategorias(dataCategorias);
+        setSubcategorias(dataSubcategorias);
 
         const combinedData = dataProductos.map(producto => {
           const categoria = dataCategorias.find(cat => cat.id_categoria === producto.idprocatcategoria);
@@ -69,6 +75,14 @@ function ProductosController() {
     window.location.href = '/productoNuevo';
   };
 
+  const filteredProductos = productosData.filter(producto => {
+    return (
+      producto.nom_producto.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedCategoria === '' || producto.categoria_nombre === selectedCategoria) &&
+      (selectedSubcategoria === '' || producto.subcategoria_nombre === selectedSubcategoria)
+    );
+  });
+
   return (
     <div className="homead-controller-container">
       <h1>Tabla de Productos</h1>
@@ -86,7 +100,9 @@ function ProductosController() {
           className="filter-dropdown"
         >
           <option value="">Todas las categorías</option>
-          {/* Aquí debes mapear las opciones de categoría */}
+          {categorias.map(categoria => (
+            <option key={categoria.id_categoria} value={categoria.nom_categoria}>{categoria.nom_categoria}</option>
+          ))}
         </select>
         <select
           value={selectedSubcategoria}
@@ -94,7 +110,9 @@ function ProductosController() {
           className="filter-dropdown"
         >
           <option value="">Todas las subcategorías</option>
-          {/* Aquí debes mapear las opciones de subcategoría */}
+          {subcategorias.map(subcategoria => (
+            <option key={subcategoria.id_subcategoria} value={subcategoria.nom_subcategoria}>{subcategoria.nom_subcategoria}</option>
+          ))}
         </select>
 
         <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo producto</button>
@@ -117,7 +135,7 @@ function ProductosController() {
           </tr>
         </thead>
         <tbody>
-          {productosData.map(producto => (
+          {filteredProductos.map(producto => (
             <tr key={producto.id_producto}>
               <td>{producto.id_producto}</td>
               <td>{producto.nom_producto}</td>
