@@ -15,9 +15,9 @@ function App() {
 
   return (
     <div>
-            <Navbar/>
+    <Navbar/>
 
-            <Routes>
+      <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <LoginView setIsLoggedIn={setIsLoggedIn} />}/>
         <Route path="/home" element={<HomeAdView />} />
         <Route path="/crear" element={<NewUserView />} />

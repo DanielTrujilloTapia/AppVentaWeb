@@ -35,7 +35,7 @@ const NewUserController = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios', {
+      const response = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

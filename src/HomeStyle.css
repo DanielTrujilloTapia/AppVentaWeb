@@ -36,12 +36,31 @@
     cursor: pointer; /* Cursor al pasar el ratón */
     border-radius: 5px; /* Borde redondeado */
   }
-  .search-bar {
-    width: 100%; /* Ajusta el ancho al 100% */
-    margin-bottom: 20px; /* Añade un margen inferior */
-    padding: 8px; /* Añade relleno */
-    box-sizing: border-box; /* Incluye el relleno y el borde en el tamaño total */
-    border: 1px solid #ccc; /* Añade un borde */
-    border-radius: 20px; /* Añade esquinas redondeadas */
-  }
   
+  
+
+  /* En tu archivo HomeStyle.css */
+
+.filter-dropdown {
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.search-input {
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+
+
+/* Estilos para la tabla y otros elementos pueden ir aquí */

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import '../HomeStyle.css';
+import '..//HomeStyle.css';
 
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedEstado, setSelectedEstado] = useState('');
+  const [selectedTipoUsuario, setSelectedTipoUsuario] = useState('');
   const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
   const apiUrlEstados = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados';
@@ -29,6 +31,8 @@ function UsuariosController() {
         }
         const dataEstados = await responseEstados.json();
 
+        console.log('Data Estados:', dataEstados); // Verificar los datos de estados recibidos
+
         const combinedData = dataUsers.map(user => {
           const tipoUsuario = dataTipos.find(tipo => tipo.id_tipo === user.idusucattipousuario);
           const estadoUsuario = dataEstados.find(estado => estado.id_estado === user.idusucatestado);
@@ -36,21 +40,31 @@ function UsuariosController() {
             id_usuario: user.id_usuario,
             nom_usuario: user.nom_usuario,
             contrasena: user.contrasena,
-            estado_nombre: estadoUsuario ? estadoUsuario.nom_estado : '',
-            estado_descripcion: estadoUsuario ? estadoUsuario.descripcion_estado : '',
+            estado_nombre: estadoUsuario ? estadoUsuario.nom_estado : '', // Corregido aquí
+            estado_descripcion: estadoUsuario ? estadoUsuario.descripcion_estado : '', // Corregido aquí
             tipo_cuenta_nombre: tipoUsuario ? tipoUsuario.nom_tipo : '',
             tipo_cuenta_descripcion: tipoUsuario ? tipoUsuario.descripcion_tipo : ''
           };
         });
 
-        setUserData(combinedData);
+        const filteredData = combinedData.filter(user => {
+          return (
+            user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            (selectedEstado === '' || user.estado_nombre.toLowerCase() === selectedEstado.toLowerCase()) &&
+            (selectedTipoUsuario === '' || user.tipo_cuenta_nombre.toLowerCase() === selectedTipoUsuario.toLowerCase())
+          );
+        });
+
+        console.log('Filtered Data:', filteredData); // Verificar los datos filtrados
+
+        setUserData(filteredData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [searchTerm, selectedEstado, selectedTipoUsuario]);
 
   const handleEdit = (userId) => {
     // Lógica para editar el usuario con el ID especificado
@@ -64,35 +78,40 @@ function UsuariosController() {
     window.location.href = '/crear';
   };
 
-  // Función de búsqueda
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
-    setSearchTerm(searchTerm);
-  };
-
-  // Filtrar usuarios basados en el término de búsqueda
-  const filteredUsers = userData.filter(user => {
-    return (
-      user.nom_usuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.id_usuario.toString().includes(searchTerm.toLowerCase())
-    );
-  });
-
   return (
     <div className="homead-controller-container">
-    <h1>Tabla de Usuarios</h1>
-    <div className="search-container">
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Buscar usuario..."
-        className="search-input"
-        style={{ width: 'calc(100% - 200px)' }} // Ajusta el ancho de la barra de búsqueda
-      />
-      <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo usuario</button>
-    </div>
+      <h1>Tabla de Usuarios</h1>
+      <div className="search-container">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Buscar usuario..."
+          className="search-input"
+        />
+        <select
+          value={selectedEstado}
+          onChange={(e) => setSelectedEstado(e.target.value)}
+          className="filter-dropdown"
+        >
+          <option value="">Todos los estados</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+          <option value="suspendido">Suspendido</option>
 
+        </select>
+        <select
+          value={selectedTipoUsuario}
+          onChange={(e) => setSelectedTipoUsuario(e.target.value)}
+          className="filter-dropdown"
+        >
+          <option value="">Todos los tipos de usuario</option>
+          <option value="admin">Administrador</option>
+          <option value="empleado">Empleado</option>
+        </select>
+
+        <button onClick={redirectToRegistro} className="register-button">Registrar un nuevo usuario</button>
+      </div>
       <table className="homead-table"> 
         <thead>
           <tr>
@@ -107,7 +126,7 @@ function UsuariosController() {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map(user => (
+          {userData.map(user => (
             <tr key={user.id_usuario}>
               <td>{user.id_usuario}</td>
               <td>{user.nom_usuario}</td>
