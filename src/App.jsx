@@ -6,7 +6,10 @@ import LoginView from './views/loginView.jsx'
 import HomeAdView from './views/HomeAdView.jsx'
 import NewUserView from './views/NewUserView.jsx'
 import UsuariosView from './views/UsuariosView.jsx'
+import ProductosView from './views/productos/ProductosView.jsx';
 import Navbar from './Navbar.jsx';
+import NewProductoView from './views/productos/NewProductoView.jsx';
+
 
 
 function App() {
@@ -22,7 +25,8 @@ function App() {
         <Route path="/home" element={<HomeAdView />} />
         <Route path="/crear" element={<NewUserView />} />
         <Route path="/usuarios" element={<UsuariosView />} />
-
+        <Route path="/productosAdmin" element={<ProductosView />} />
+        <Route path="/productoNuevo" element={<NewProductoView />} />
       </Routes>
     </div>
   )
