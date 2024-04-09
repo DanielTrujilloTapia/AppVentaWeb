@@ -9,6 +9,7 @@ import UsuariosView from './views/UsuariosView.jsx'
 import ProductosView from './views/productos/ProductosView.jsx';
 import Navbar from './Navbar.jsx';
 import NewProductoView from './views/productos/NewProductoView.jsx';
+import EmailController from './controller/EmailController.jsx';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/usuarios" element={<UsuariosView />} />
         <Route path="/productosAdmin" element={<ProductosView />} />
         <Route path="/productoNuevo" element={<NewProductoView />} />
+        <Route path="/contactanos" element={<EmailController />} />
       </Routes>
     </div>
   )
