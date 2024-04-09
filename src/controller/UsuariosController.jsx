@@ -9,9 +9,9 @@ function UsuariosController() {
   const [estadosUsuario, setEstadosUsuario] = useState([]);
   const [tiposUsuario, setTiposUsuario] = useState([]);
 
-  const apiUrlUsers = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios';
-  const apiUrlTipos = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
-  const apiUrlEstados = 'https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados';
+  const apiUrlUsers = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios';
+  const apiUrlTipos = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
+  const apiUrlEstados = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Cat_Estados';
 
   useEffect(() => {
     const fetchData = async () => {

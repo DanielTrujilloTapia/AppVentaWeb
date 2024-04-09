@@ -8,9 +8,9 @@ function ProductosController() {
   const [categorias, setCategorias] = useState([]);
   const [subcategorias, setSubcategorias] = useState([]);
 
-  const apiUrlProductos = 'https://localhost:7199/api/Pro_Productos';
-  const apiUrlCategorias = 'https://localhost:7199/api/Pro_Cat_Categorias';
-  const apiUrlSubcategorias = 'https://localhost:7199/api/Pro_Cat_Subcategorias';
+  const apiUrlProductos = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos';
+  const apiUrlCategorias = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Cat_Categorias';
+  const apiUrlSubcategorias = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Cat_Subcategorias';
 
   useEffect(() => {
     const fetchData = async () => {

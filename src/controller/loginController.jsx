@@ -7,7 +7,7 @@ const LoginController = ({ username, password }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios');
+      const response = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios');
       const users = await response.json();
 
       const userFound = users.find((usu_usuario) => usu_usuario.nom_usuario === username && usu_usuario.contrasena === password);

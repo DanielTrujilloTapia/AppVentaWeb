@@ -17,7 +17,7 @@ const NewProductoController = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const categoriasResponse = await fetch('https://localhost:7199/api/Pro_Cat_Categorias');
+        const categoriasResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Cat_Categorias');
         const categoriasData = await categoriasResponse.json();
         setCategorias(categoriasData);
       } catch (error) {
@@ -25,7 +25,7 @@ const NewProductoController = () => {
       }
       
       try {
-        const subcategoriasResponse = await fetch('https://localhost:7199/api/Pro_Cat_Subcategorias');
+        const subcategoriasResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Cat_Subcategorias');
         const subcategoriasData = await subcategoriasResponse.json();
         setSubcategorias(subcategoriasData);
       } catch (error) {
@@ -40,7 +40,7 @@ const NewProductoController = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://localhost:7199/api/Pro_Productos', {
+      const response = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

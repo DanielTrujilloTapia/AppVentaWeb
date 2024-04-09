@@ -12,7 +12,7 @@ const NewUserController = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const tiposResponse = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios');
+        const tiposResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios');
         const tiposData = await tiposResponse.json();
         setTiposUsuarios(tiposData);
       } catch (error) {
@@ -20,7 +20,7 @@ const NewUserController = () => {
       }
       
       try {
-        const estadosResponse = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Cat_Estados');
+        const estadosResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Cat_Estados');
         const estadosData = await estadosResponse.json();
         setEstados(estadosData);
       } catch (error) {
@@ -35,7 +35,7 @@ const NewUserController = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://mysqlventapuntoapidu.azurewebsites.net/api/Usu_Usuarios', {
+      const response = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
