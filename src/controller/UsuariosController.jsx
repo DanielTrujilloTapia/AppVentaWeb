@@ -73,9 +73,25 @@ function UsuariosController() {
     // Lógica para editar el usuario con el ID especificado
   };
 
-  const handleDelete = (userId) => {
-    // Lógica para eliminar el usuario con el ID especificado
+  const handleDelete = async (userId) => {
+    try {
+      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios?id=${userId}`, {
+        method: 'DELETE',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al eliminar el usuario');
+      } else{
+        console.log('El usuario se elimino de forma correcta')
+      }
+  
+      // Actualizar el estado para reflejar que el usuario ha sido eliminado
+      setUserData(userData.filter(user => user.id_usuario !== userId));
+    } catch (error) {
+      console.error('Error al eliminar el usuario:', error);
+    }
   };
+  
 
   const redirectToRegistro = () => {
     window.location.href = '/crear';
