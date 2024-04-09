@@ -67,8 +67,24 @@ function ProductosController() {
     // Lógica para editar el producto con el ID especificado
   };
 
-  const handleDelete = (productoId) => {
-    // Lógica para eliminar el producto con el ID especificado
+  const handleDelete = async (productoId) => {
+    try {
+      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?id=${productoId}`, {
+        method: 'DELETE',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al eliminar el producto');
+      } else {
+        console.log('El producto se eliminó de forma correcta');
+      }
+  
+      // Suponiendo que tienes un estado que maneja los productos similar a userData
+      // Actualizar el estado para reflejar que el producto ha sido eliminado
+      setProductosData(productosData.filter(producto => producto.id_producto !== productoId));
+    } catch (error) {
+      console.error('Error al eliminar el producto:', error);
+    }
   };
 
   const redirectToRegistro = () => {
