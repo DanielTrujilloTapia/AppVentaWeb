@@ -1,13 +1,15 @@
 .navbar {
-  background-color: #ffffff;
-  padding: 10px 20px;
+  background-color: #fff; /* Fondo blanco */
+  padding: 15px 30px; /* Espaciado interno */
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  justify-content: space-between; /* Distribuir espacio entre elementos */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
 .navbar-list {
@@ -15,24 +17,70 @@
   margin: 0;
   padding: 0;
   display: flex;
-  margin-right: auto; /* Mueve los enlaces hacia el lado izquierdo */
+  margin-right: auto; /* Mover enlaces hacia el lado izquierdo */
 }
 
 .navbar-list li {
-  margin-right: 10px; /* Espaciado entre los botones */
+  margin-right: 20px; /* Espaciado entre elementos */
 }
 
 .navbar-link {
-  color: #000; /* Color de la letra negro */
+  color: #000; /* Color del texto */
   text-decoration: none;
   font-weight: bold;
-  padding: 8px 12px;
-  border-radius: 20px; /* Borde redondeado */
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Agregamos transición para el efecto de iluminación */
+  padding: 10px 20px; /* Espaciado interno de botones */
+  border-radius: 20px; /* Bordes redondeados */
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s; /* Transiciones */
+  font-size: 18px; /* Tamaño de fuente */
+  border: 2px solid transparent; /* Borde transparente */
 }
 
 .navbar-link:hover {
-  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
-  color: #fff; /* Cambia el color del texto al pasar el mouse */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Efecto de iluminación al pasar el mouse */
+  background-color: .navbar {
+    background-color: #fff; /* Fondo blanco */
+    padding: 15px 30px; /* Espaciado interno */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between; /* Distribuir espacio entre elementos */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-right: auto; /* Mover enlaces hacia el lado izquierdo */
+  }
+  
+  .navbar-list li {
+    margin-right: 20px; /* Espaciado entre elementos */
+  }
+  
+  .navbar-link {
+    color: #000; /* Color del texto */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px; /* Espaciado interno de botones */
+    border-radius: 20px; /* Bordes redondeados */
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s; /* Transiciones */
+    font-size: 18px; /* Tamaño de fuente */
+    border: 2px solid transparent; /* Borde transparente */
+  }
+  
+  .navbar-link:hover {
+    background-color: #f0f0f0; /* Cambio de color al pasar el mouse */
+    color: #000; /* Cambio de color al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Cambio de sombra al pasar el mouse */
+    border-color: #ccc; /* Color del borde al pasar el mouse */
+  }
+  ; /* Cambio de color al pasar el mouse */
+  color: #000; /* Cambio de color al pasar el mouse */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Cambio de sombra al pasar el mouse */
+  border-color: #ccc; /* Color del borde al pasar el mouse */
 }
