@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 function ProductosController() {
   const [productosData, setProductosData] = useState([]);
@@ -75,11 +76,15 @@ function ProductosController() {
   
       if (!response.ok) {
         throw new Error('Error al eliminar el producto');
-      } else {
-        console.log('El producto se eliminó de forma correcta');
       }
   
-      // Suponiendo que tienes un estado que maneja los productos similar a userData
+      // Muestra la SweetAlert de éxito
+      Swal.fire({
+        icon: 'success',
+        title: '¡Producto eliminado!',
+        text: 'El producto se eliminó correctamente.',
+      });
+  
       // Actualizar el estado para reflejar que el producto ha sido eliminado
       setProductosData(productosData.filter(producto => producto.id_producto !== productoId));
     } catch (error) {
