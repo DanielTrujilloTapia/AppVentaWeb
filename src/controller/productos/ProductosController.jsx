@@ -147,7 +147,7 @@ function ProductosController() {
               <td>{producto.stock}</td>
               <td>{producto.costo}</td>
               <td>{producto.precio}</td>
-              <td>{producto.imagen}</td>
+              <td><img src={producto.imagen} alt={producto.nom_producto} style={{ maxWidth: '100px' }} /></td>
               <td>
                 <button onClick={() => handleEdit(producto.id_producto)} className="edit-button">Editar</button>
                 <button onClick={() => handleDelete(producto.id_producto)} className="delete-button">Eliminar</button>

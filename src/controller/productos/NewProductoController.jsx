@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const NewProductoController = () => {
   const [nombreProducto, setNombreProducto] = useState('');
@@ -60,7 +61,15 @@ const NewProductoController = () => {
       });
 
       if (response.ok) {
-        console.log('Datos enviados correctamente.');
+        // Muestra la SweetAlert de éxito
+        Swal.fire({
+          icon: 'success',
+          title: '¡Producto agregado!',
+          text: 'El producto se agregó con éxito.',
+        }).then(() => {
+          // Redirige al usuario a la tabla de productos
+          window.location.href = '/productosAdmin';
+        });
       } else {
         console.error('Error al enviar los datos.');
       }
