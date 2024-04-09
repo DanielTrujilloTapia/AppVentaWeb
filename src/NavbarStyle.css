@@ -1,15 +1,15 @@
 .navbar {
-  background-color: #fff; /* Fondo blanco */
-  padding: 15px 30px; /* Espaciado interno */
+  background-color: #fff;
+  padding: 15px 30px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   display: flex;
-  justify-content: space-between; /* Distribuir espacio entre elementos */
-  border-radius: 20px; /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  justify-content: space-between;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-list {
@@ -17,70 +17,27 @@
   margin: 0;
   padding: 0;
   display: flex;
-  margin-right: auto; /* Mover enlaces hacia el lado izquierdo */
+  margin-right: auto;
 }
 
 .navbar-list li {
-  margin-right: 20px; /* Espaciado entre elementos */
+  margin-right: 20px;
 }
 
 .navbar-link {
-  color: #000; /* Color del texto */
+  color: #000;
   text-decoration: none;
   font-weight: bold;
-  padding: 10px 20px; /* Espaciado interno de botones */
-  border-radius: 20px; /* Bordes redondeados */
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s; /* Transiciones */
-  font-size: 18px; /* Tamaño de fuente */
-  border: 2px solid transparent; /* Borde transparente */
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s;
+  font-size: 18px;
+  border: 2px solid transparent;
 }
 
 .navbar-link:hover {
-  background-color: .navbar {
-    background-color: #fff; /* Fondo blanco */
-    padding: 15px 30px; /* Espaciado interno */
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between; /* Distribuir espacio entre elementos */
-    border-radius: 20px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
-  }
-  
-  .navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    margin-right: auto; /* Mover enlaces hacia el lado izquierdo */
-  }
-  
-  .navbar-list li {
-    margin-right: 20px; /* Espaciado entre elementos */
-  }
-  
-  .navbar-link {
-    color: #000; /* Color del texto */
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px; /* Espaciado interno de botones */
-    border-radius: 20px; /* Bordes redondeados */
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, border-color 0.3s; /* Transiciones */
-    font-size: 18px; /* Tamaño de fuente */
-    border: 2px solid transparent; /* Borde transparente */
-  }
-  
-  .navbar-link:hover {
-    background-color: #f0f0f0; /* Cambio de color al pasar el mouse */
-    color: #000; /* Cambio de color al pasar el mouse */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Cambio de sombra al pasar el mouse */
-    border-color: #ccc; /* Color del borde al pasar el mouse */
-  }
-  ; /* Cambio de color al pasar el mouse */
-  color: #000; /* Cambio de color al pasar el mouse */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Cambio de sombra al pasar el mouse */
-  border-color: #ccc; /* Color del borde al pasar el mouse */
+  background-color: #007bff; /* Cambio de color al pasar el mouse */
+  color: #fff; /* Cambio de color de texto al pasar el mouse */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-color: transparent; /* Transparentar el borde al pasar el mouse */
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '..//HomeStyle.css';
+import Swal from 'sweetalert2';
+
 
 function UsuariosController() {
   const [userData, setUserData] = useState([]);
@@ -81,8 +83,13 @@ function UsuariosController() {
   
       if (!response.ok) {
         throw new Error('Error al eliminar el usuario');
-      } else{
-        console.log('El usuario se elimino de forma correcta')
+      } else {
+        // Muestra la SweetAlert de éxito
+        Swal.fire({
+          icon: 'success',
+          title: '¡Usuario eliminado!',
+          text: 'El usuario se eliminó con éxito.',
+        });
       }
   
       // Actualizar el estado para reflejar que el usuario ha sido eliminado

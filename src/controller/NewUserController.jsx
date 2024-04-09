@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../CreateUsrStyle.css';
+import Swal from 'sweetalert2';
 
 const NewUserController = () => {
   const [nomUsuario, setNomUsuario] = useState('');
@@ -49,7 +49,15 @@ const NewUserController = () => {
       });
 
       if (response.ok) {
-        console.log('Datos enviados correctamente.');
+        // Muestra la SweetAlert de éxito
+        Swal.fire({
+          icon: 'success',
+          title: '¡Usuario registrado!',
+          text: 'El usuario se registró con éxito.',
+        }).then(() => {
+          // Redirige al usuario a la tabla de usuarios
+          window.location.href = '/usuarios';
+        });
       } else {
         console.error('Error al enviar los datos.');
       }
