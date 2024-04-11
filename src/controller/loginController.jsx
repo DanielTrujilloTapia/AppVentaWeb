@@ -13,6 +13,8 @@ const LoginController = ({ username, password }) => {
       const userFound = users.find((usu_usuario) => usu_usuario.nom_usuario === username && usu_usuario.contrasena === password);
 
       if (userFound) {
+        localStorage.setItem('user', JSON.stringify(userFound));
+
         Swal.fire({ 
           icon: 'success',
           title: '¡Inicio de sesión exitoso!',
