@@ -7,6 +7,7 @@ import HomeAdView from './views/HomeAdView.jsx'
 import NewUserView from './views/NewUserView.jsx'
 import UsuariosView from './views/UsuariosView.jsx'
 import ProductosView from './views/productos/ProductosView.jsx';
+
 import Navbar from './Navbar.jsx';
 import NewProductoView from './views/productos/NewProductoView.jsx';
 import EmailController from './controller/EmailController.jsx';
