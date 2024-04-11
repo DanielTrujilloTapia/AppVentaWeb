@@ -5,6 +5,8 @@ function EmailView() {
       <div> 
         <EmailController/>
       </div>
+      
+      
     );
   }
 

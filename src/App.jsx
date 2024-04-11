@@ -11,6 +11,7 @@ import ProductosView from './views/productos/ProductosView.jsx';
 import Navbar from './Navbar.jsx';
 import NewProductoView from './views/productos/NewProductoView.jsx';
 import EmailController from './controller/EmailController.jsx';
+import VentasView from './views/VentasView.jsx';
 
 
 
@@ -20,8 +21,7 @@ function App() {
 
   return (
     <div>
-    <Navbar/>
-
+      <Navbar/>
       <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <LoginView setIsLoggedIn={setIsLoggedIn} />}/>
         <Route path="/home" element={<HomeAdView />} />
@@ -30,6 +30,8 @@ function App() {
         <Route path="/productosAdmin" element={<ProductosView />} />
         <Route path="/productoNuevo" element={<NewProductoView />} />
         <Route path="/contactanos" element={<EmailController />} />
+        <Route path="/ventas" element={<VentasView />} />
+
       </Routes>
     </div>
   )
