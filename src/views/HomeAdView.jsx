@@ -1,7 +1,6 @@
 // HomeAdView.js
 import HomeAdController from '../controller/HomeAdController';
 import '../LoginStyle.css'
-import Navbar from '../Navbar.jsx';
 
 function HomeAdView() {
   return (
