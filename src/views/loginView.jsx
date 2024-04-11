@@ -8,7 +8,7 @@ const LoginView = ({ setIsLoggedIn }) => { // Añade setIsLoggedIn como una prop
   const [password, setPassword] = useState('');
 
   const handleUsernameChange = (e) => { 
-    setUsername(e.target.value);
+    setUsername(e.target.value);  
   };
 
   const handlePasswordChange = (e) => {

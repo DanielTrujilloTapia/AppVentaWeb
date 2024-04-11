@@ -167,25 +167,41 @@ function ProductosController() {
   
   const handleDelete = async (productoId) => {
     try {
-      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?id=${productoId}`, {
-        method: 'DELETE',
+      const confirmation = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede revertir.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar'
       });
   
-      if (!response.ok) {
-        throw new Error('Error al eliminar el producto');
+      if (confirmation.isConfirmed) {
+        const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?id=${productoId}`, {
+          method: 'DELETE',
+        });
+  
+        if (!response.ok) {
+          throw new Error('Error al eliminar el producto');
+        } else {
+          // Muestra la SweetAlert de éxito
+          Swal.fire({
+            icon: 'success',
+            title: '¡Producto eliminado!',
+            text: 'El producto se eliminó con éxito.',
+          });
+        }
+  
+        // Actualizar el estado para reflejar que el producto ha sido eliminado
+        setProductosData(productosData.filter(producto => producto.id_producto !== productoId));
       }
-  
-      Swal.fire({
-        icon: 'success',
-        title: '¡Producto eliminado!',
-        text: 'El producto se eliminó correctamente.',
-      });
-  
-      setProductosData(productosData.filter(producto => producto.id_producto !== productoId));
     } catch (error) {
       console.error('Error al eliminar el producto:', error);
     }
   };
+  
 
   const redirectToRegistro = () => {
     window.location.href = '/productoNuevo';

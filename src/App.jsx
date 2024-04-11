@@ -11,7 +11,10 @@ import ProductosView from './views/productos/ProductosView.jsx';
 import Navbar from './Navbar.jsx';
 import NewProductoView from './views/productos/NewProductoView.jsx';
 import EmailController from './controller/EmailController.jsx';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54647b362d9173d216e6ecbc41d29520877fb23f
 
 
 
@@ -30,7 +33,10 @@ function App() {
         <Route path="/productosAdmin" element={<ProductosView />} />
         <Route path="/productoNuevo" element={<NewProductoView />} />
         <Route path="/contactanos" element={<EmailController />} />
+<<<<<<< HEAD
         
+=======
+>>>>>>> 54647b362d9173d216e6ecbc41d29520877fb23f
 
       </Routes>
     </div>

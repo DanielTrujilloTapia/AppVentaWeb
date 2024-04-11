@@ -81,6 +81,8 @@ function UsuariosController() {
           <input id="nom_usuario" type="text" value="${user.nom_usuario}" placeholder="Nombre de usuario" class="swal2-input">
           <label for="contrasena">Contraseña:</label>
           <input id="contrasena" type="password" value="${user.contrasena}" placeholder="Contraseña" class="swal2-input">
+          <label for="confirm_contrasena">Confirmar Contraseña:</label>
+          <input id="confirm_contrasena" type="password" placeholder="Confirmar contraseña" class="swal2-input">
           <label for="estado">Estado:</label>
           <select id="estado" class="swal2-input">
             ${estadosUsuario.map(estado => `<option value="${estado.id_estado}" ${estado.id_estado === user.estado_id ? 'selected' : ''}>${estado.nom_estado}</option>`).join('')}
@@ -94,13 +96,23 @@ function UsuariosController() {
         preConfirm: () => {
           const nom_usuario = Swal.getPopup().querySelector('#nom_usuario').value;
           const contrasena = Swal.getPopup().querySelector('#contrasena').value;
+          const confirm_contrasena = Swal.getPopup().querySelector('#confirm_contrasena').value;
           const estado = Swal.getPopup().querySelector('#estado').value;
           const tipo_cuenta = Swal.getPopup().querySelector('#tipo_cuenta').value;
-          return { nom_usuario, contrasena, estado, tipo_cuenta };
+          return { nom_usuario, contrasena, confirm_contrasena, estado, tipo_cuenta };
         }
       });
 
       if (formValues) {
+        if (formValues.contrasena !== formValues.confirm_contrasena) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Las contraseñas no coinciden. Por favor, inténtalo de nuevo.'
+          });
+          return;
+        }
+
         const updatedUser = {
           id_usuario: userId,
           nom_usuario: formValues.nom_usuario,
@@ -145,28 +157,40 @@ function UsuariosController() {
 
   const handleDelete = async (userId) => {
     try {
-      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios?id=${userId}`, {
-        method: 'DELETE',
+      const confirmation = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede revertir.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'Cancelar'
       });
-  
-      if (!response.ok) {
-        throw new Error('Error al eliminar el usuario');
-      } else {
-        // Muestra la SweetAlert de éxito
-        Swal.fire({
-          icon: 'success',
-          title: '¡Usuario eliminado!',
-          text: 'El usuario se eliminó con éxito.',
+
+      if (confirmation.isConfirmed) {
+        const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios?id=${userId}`, {
+          method: 'DELETE',
         });
+
+        if (!response.ok) {
+          throw new Error('Error al eliminar el usuario');
+        } else {
+          // Muestra la SweetAlert de éxito
+          Swal.fire({
+            icon: 'success',
+            title: '¡Usuario eliminado!',
+            text: 'El usuario se eliminó con éxito.',
+          });
+        }
+
+        // Actualizar el estado para reflejar que el usuario ha sido eliminado
+        setUserData(userData.filter(user => user.id_usuario !== userId));
       }
-  
-      // Actualizar el estado para reflejar que el usuario ha sido eliminado
-      setUserData(userData.filter(user => user.id_usuario !== userId));
     } catch (error) {
       console.error('Error al eliminar el usuario:', error);
     }
   };
-  
 
   const redirectToRegistro = () => {
     window.location.href = '/crear';
