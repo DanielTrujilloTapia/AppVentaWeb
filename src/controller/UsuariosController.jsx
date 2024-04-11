@@ -233,7 +233,6 @@ function UsuariosController() {
       <table className="homead-table"> 
         <thead>
           <tr>
-            <th>ID</th>
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>Estado</th>
@@ -245,7 +244,6 @@ function UsuariosController() {
         <tbody>
           {userData.map(user => (
             <tr key={user.id_usuario}>
-              <td>{user.id_usuario}</td>
               <td>{user.nom_usuario}</td>
               <td>{user.contrasena}</td>
               <td>{user.estado_nombre}</td>

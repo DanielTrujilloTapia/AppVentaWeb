@@ -252,7 +252,6 @@ function ProductosController() {
       <table className="homead-table"> 
         <thead>
           <tr>
-            <th>ID</th>
             <th>Producto</th>
             <th>Descripción</th>
             <th>Categoría</th>
@@ -269,7 +268,6 @@ function ProductosController() {
         <tbody>
           {filteredProductos.map(producto => (
             <tr key={producto.id_producto}>
-              <td>{producto.id_producto}</td>
               <td>{producto.nom_producto}</td>
               <td>{producto.descripcion_producto}</td>
               <td>{producto.categoria_nombre}</td>
