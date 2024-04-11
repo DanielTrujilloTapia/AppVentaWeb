@@ -69,12 +69,12 @@ function ProductosController() {
   const handleEdit = async (productoId) => {
     try {
       const producto = productosData.find(producto => producto.id_producto === productoId);
-
+  
       // Dentro de la función handleEdit
       const categoriasOptions = categorias.map(categoria => `<option value="${categoria.nom_categoria}" ${categoria.nom_categoria === producto.categoria_nombre ? 'selected' : ''}>${categoria.nom_categoria}</option>`).join('');
       const subcategoriasOptions = subcategorias.map(subcategoria => `<option value="${subcategoria.nom_subcategoria}" ${subcategoria.nom_subcategoria === producto.subcategoria_nombre ? 'selected' : ''}>${subcategoria.nom_subcategoria}</option>`).join('');
-
-
+  
+  
       const { value: formValues } = await Swal.fire({
         title: 'Editar Producto',
         html: `
@@ -96,6 +96,8 @@ function ProductosController() {
           <input id="costo" type="number" value="${producto.costo}" placeholder="Costo" class="swal2-input">
           <label for="precio">Precio:</label>
           <input id="precio" type="number" value="${producto.precio}" placeholder="Precio" class="swal2-input">
+          <label for="imagen">URL de la Imagen:</label>
+          <input id="imagen" type="text" value="${producto.imagen}" placeholder="URL de la imagen" class="swal2-input">
         `,
         focusConfirm: false,
         preConfirm: () => {
@@ -108,7 +110,8 @@ function ProductosController() {
           const stock = parseFloat(Swal.getPopup().querySelector('#stock').value);
           const costo = parseFloat(Swal.getPopup().querySelector('#costo').value);
           const precio = parseFloat(Swal.getPopup().querySelector('#precio').value);
-          return { nom_producto, descripcion_producto, categoria, subcategoria, maximo, minimo, stock, costo, precio };
+          const imagen = Swal.getPopup().querySelector('#imagen').value;
+          return { nom_producto, descripcion_producto, categoria, subcategoria, maximo, minimo, stock, costo, precio, imagen };
         }
       });
   
@@ -124,7 +127,7 @@ function ProductosController() {
           stock: formValues.stock,
           costo: formValues.costo,
           precio: formValues.precio,
-          imagen: producto.imagen
+          imagen: formValues.imagen
         };
   
         try {
@@ -160,6 +163,7 @@ function ProductosController() {
       console.error('Error al abrir la ventana de edición:', error);
     }
   };
+  
   
   const handleDelete = async (productoId) => {
     try {
