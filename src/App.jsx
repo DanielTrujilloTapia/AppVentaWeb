@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <Navbar/>
+      
       <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/home" /> : <LoginView setIsLoggedIn={setIsLoggedIn} />}/>
         <Route path="/home" element={<HomeAdView />} />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import ProductosController from "../../controller/productos/ProductosController";
 import ProdEmpleadoController from "../../controller/productos/ProdEmpeladoController";
+import Navbar from '../../Navbar';
 
 function ProductosView() {
   const [userId, setUserId] = useState(null);
@@ -20,6 +21,7 @@ function ProductosView() {
   
   return (
     <div> 
+      <Navbar/>
       {admin ? (
         <ProductosController />
       ) : empleado ? (

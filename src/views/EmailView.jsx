@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-
+import Navbar from '../Navbar';
 import EmailController from "../controller/EmailController";
 
 function EmailView() {
@@ -19,6 +19,7 @@ function EmailView() {
 
   return (
     <div>
+    <Navbar/>
       {admin3 ? (
         <EmailController />
       ) : (

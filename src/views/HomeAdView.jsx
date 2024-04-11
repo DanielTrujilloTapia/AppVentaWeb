@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HomeAdController from '../controller/HomeAdController.jsx';
 import HomeEmpController from '../controller/HomeEmpController.jsx';
+import Navbar from '../Navbar.jsx';
 
 function HomeAdView() {
   const [user, setUser] = useState(null);
@@ -19,6 +20,7 @@ function HomeAdView() {
   
   return (
     <div>
+      <Navbar/>
       {isAdmin ? (
         <HomeAdController />
       ) : isEmployee ? (

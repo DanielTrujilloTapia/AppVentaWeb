@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LoginController from '../controller/loginController.jsx'; 
 import '../App.css';
 
+
 const LoginView = ({ setIsLoggedIn }) => { // Añade setIsLoggedIn como una prop
 
   const [username, setUsername] = useState('');

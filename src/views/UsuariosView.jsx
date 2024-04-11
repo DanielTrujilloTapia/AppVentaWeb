@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import UsuariosController from '../controller/UsuariosController.jsx';
 import '../LoginStyle.css'; 
 import UsuEmpleadosController from '../controller/UsuEmpleadosController.jsx';
+import Navbar from '../Navbar.jsx';
 
 function UsuariosView() {
   const [userId, setUserId] = useState(null);
@@ -20,6 +21,7 @@ function UsuariosView() {
 
   return (
     <div>
+      <Navbar/>
       {admin2 ? (
         <UsuariosController />
       ) : empleado2 ? (

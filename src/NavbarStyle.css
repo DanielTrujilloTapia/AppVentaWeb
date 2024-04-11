@@ -1,6 +1,6 @@
 .navbar {
   background-color: #fff;
-  padding: 15px 30px;
+  padding: 15px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -8,8 +8,16 @@
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  border-radius: 20px;
+  align-items: center;
+  border-radius: 0 0 20px 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
 }
 
 .navbar-list {
@@ -17,7 +25,6 @@
   margin: 0;
   padding: 0;
   display: flex;
-  margin-right: auto;
 }
 
 .navbar-list li {
@@ -36,35 +43,45 @@
 }
 
 .navbar-link:hover {
-  background-color: #007bff; /* Cambio de color al pasar el mouse */
-  color: #fff; /* Cambio de color de texto al pasar el mouse */
+  background-color: #007bff;
+  color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border-color: transparent; /* Transparentar el borde al pasar el mouse */
+  border-color: transparent;
 }
 
-
 .logout-button {
-  background-color: #dc3545; /* Color de fondo del botón */
-  color: #fff; /* Color del texto del botón */
-  border: none; /* Eliminar el borde del botón */
-  padding: 10px 20px; /* Espaciado interno del botón */
-  border-radius: 20px; /* Borde redondeado */
-  font-weight: bold; /* Texto en negrita */
-  cursor: pointer; /* Cursor de tipo puntero al pasar sobre el botón */
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 999px; /* Hacemos que el borde sea completamente redondeado */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 .logout-button:hover {
-  background-color: #c82333; /* Cambio de color al pasar el mouse */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+  background-color: #c82333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 
-.navbar-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  margin-right: auto;
-  align-items: center; /* Alinear verticalmente los elementos */
+@media screen and (max-width: 768px) {
+  .navbar-list {
+    display: none;
+  }
+
+  .logout-button {
+    display: none;
+  }
+
+  .navbar-logo {
+    font-size: 20px;
+    margin-left: 15px;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    padding: 15px 30px;
+  }
 }

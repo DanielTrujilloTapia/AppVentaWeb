@@ -1,66 +1,91 @@
 .homead-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leve sombreado */
-  }
-  
-  
-  .homead-table th,
-  .homead-table td {
-    padding: 12px 16px;
-    text-align: left;
-    border-bottom: 1px solid #f0f0f0; /* Línea divisoria */
-  }
-  
-  .homead-table th {
-    background-color: #f5f5f5; /* Color de fondo para encabezados */
-    font-weight: bold;
-  }
-  
-  .homead-table tr:hover {
-    background-color: #fafafa; /* Color de fondo al pasar el mouse */
-  }
-  
-  .register-button {
-    background-color: #4CAF50; /* Color de fondo */
-    border: none; /* Sin borde */
-    color: white; /* Color del texto */
-    padding: 10px 20px; /* Relleno interno */
-    text-align: center; /* Alineación del texto */
-    text-decoration: none; /* Sin subrayado */
-    display: inline-block; /* Mostrar como bloque en línea */
-    font-size: 16px; /* Tamaño de la fuente */
-    margin: 4px 2px; /* Márgenes */
-    cursor: pointer; /* Cursor al pasar el ratón */
-    border-radius: 5px; /* Borde redondeado */
-  }
-  
-  
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Leve sombreado */
+}
 
-  /* En tu archivo HomeStyle.css */
+
+.homead-table th,
+.homead-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0; /* Línea divisoria */
+}
+
+.homead-table th {
+  background-color: #f5f5f5; /* Color de fondo para encabezados */
+  font-weight: bold;
+}
+
+.homead-table tr:hover {
+  background-color: #fafafa; /* Color de fondo al pasar el mouse */
+}
+
+.register-button {
+  background-color: #4CAF50; /* Color de fondo */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 10px 20px; /* Relleno interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar como bloque en línea */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 4px 2px; /* Márgenes */
+  cursor: pointer; /* Cursor al pasar el ratón */
+  border-radius: 5px; /* Borde redondeado */
+}
+
+
+
+/* En tu archivo HomeStyle.css */
 
 .filter-dropdown {
-  padding: 8px;
-  margin-right: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
+padding: 8px;
+margin-right: 10px;
+font-size: 14px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #fff;
+color: #333;
 }
 
 .search-input {
-  padding: 8px;
-  margin-right: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #333;
+padding: 8px;
+margin-right: 10px;
+font-size: 14px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #fff;
+color: #333;
 }
 
+.welcome-message {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.welcome-message h1 {
+color: #007bff; /* Color azul llamativo */
+font-size: 36px; /* Tamaño de fuente grande */
+font-weight: bold; /* Texto en negrita */
+}
+.welcome-message {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome-message h1 {
+  color: #007bff; /* Color azul llamativo */
+  font-size: 36px; /* Tamaño de fuente grande */
+  font-weight: bold; /* Texto en negrita */
+}
+
+.welcome-message p {
+  color: #333; /* Color del texto normal */
+  font-size: 18px; /* Tamaño de fuente normal */
+}
 
 
 /* Estilos para la tabla y otros elementos pueden ir aquí */
