@@ -113,6 +113,16 @@ function UsuariosController() {
           return;
         }
 
+        const isUsuarioExists = userData.some(item => item.nom_usuario === formValues.nom_usuario && item.id_usuario !== userId);
+        if (isUsuarioExists) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Ya existe un usuario con este nombre. Por favor, elige otro nombre.'
+          });
+          return;
+        }
+
         const updatedUser = {
           id_usuario: userId,
           nom_usuario: formValues.nom_usuario,

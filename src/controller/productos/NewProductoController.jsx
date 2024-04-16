@@ -41,7 +41,16 @@ const NewProductoController = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos', {
+      // Verificar si el producto ya existe
+      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?nombre=${nombreProducto}`);
+      const data = await response.json();
+      if (data.length > 0) {
+        setProductoExistente(true);
+        return;
+      }
+
+      // Si el producto no existe, enviar la solicitud para agregarlo
+      const addResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,14 +69,12 @@ const NewProductoController = () => {
         }),
       });
 
-      if (response.ok) {
-        // Muestra la SweetAlert de éxito
+      if (addResponse.ok) {
         Swal.fire({
           icon: 'success',
           title: '¡Producto agregado!',
           text: 'El producto se agregó con éxito.',
         }).then(() => {
-          // Redirige al usuario a la tabla de productos
           window.location.href = '/productosAdmin';
         });
       } else {
@@ -80,18 +87,21 @@ const NewProductoController = () => {
 
   const handleChangeNombreProducto = (event) => {
     const { value } = event.target;
-    // Limitar el nombre del producto a 50 caracteres
     if (value.length <= 50) {
       setNombreProducto(value);
+      setProductoExistente(false); // Reiniciar la bandera de producto existente cuando el nombre del producto cambia
     }
   };
 
   const handleChangeDescripcionProducto = (event) => {
     const { value } = event.target;
-    // Limitar la descripción del producto a 50 caracteres
     if (value.length <= 50) {
       setDescripcionProducto(value);
     }
+  };
+
+  const handleCancel = () => {
+    window.location.href = '/productosAdmin';
   };
 
   return (
@@ -206,7 +216,10 @@ const NewProductoController = () => {
             required
           />
         </div>
-        <button type="submit">Agregar Producto</button>
+        <div>
+          <button type="submit">Agregar Producto</button>
+          <button type="button" onClick={handleCancel}>Cancelar</button>
+        </div>
       </form>
     </div>
   );

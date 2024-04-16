@@ -1,0 +1,105 @@
+.ventas-container {
+    display: flex;
+  }
+  
+  .productos-disponibles, .carrito-compras {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .productos-grid, .carrito-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .producto-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  .botones-finalizar {
+    text-align: right;
+    margin-top: 20px;
+  }
+  
+  
+
+  
+  /* Estilos para los botones */
+.agregar,
+.eliminar,
+.limpiar,
+.finalizar {
+  padding: 8px 16px; /* Espaciado interno */
+  margin-top: 8px; /* Espacio entre botones */
+  border: none; /* Quita el borde */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+.agregar {
+  background-color: #4caf50; /* Color de fondo para el botón de agregar */
+  color: white; /* Color del texto */
+}
+
+.eliminar {
+  background-color: #f44336; /* Color de fondo para el botón de eliminar */
+  color: white; /* Color del texto */
+}
+
+.limpiar {
+  background-color: #ff9800; /* Color de fondo para el botón de limpiar */
+  color: white; /* Color del texto */
+}
+
+.finalizar {
+  background-color: #2196f3; /* Color de fondo para el botón de finalizar */
+  color: white; /* Color del texto */
+}
+
+/* Estilos para las cartas de productos */
+.producto-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px; /* Espacio entre cartas */
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Color de fondo de la carta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    font-family: 'Roboto', sans-serif; /* Cambia el tipo de letra */
+  }
+  
+  .producto-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .producto-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .producto-precio {
+    font-size: 16px;
+  }
+  
+  .producto-imagen {
+    width: 80px; /* Ancho de la imagen */
+    height: auto; /* Altura automática */
+    margin-right: 16px; /* Espacio entre la imagen y la información */
+  }
+  
+  /* Cambia el color de fondo de los botones al pasar el ratón por encima */
+  .agregar:hover,
+  .eliminar:hover,
+  .limpiar:hover,
+  .finalizar:hover {
+    background-color: #3e8e41; /* Cambia el color de fondo en el hover */
+  }
