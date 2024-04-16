@@ -2,9 +2,7 @@ import { useState } from 'react';
 import LoginController from '../controller/loginController.jsx'; 
 import '../App.css';
 
-
-const LoginView = ({ setIsLoggedIn }) => { // Añade setIsLoggedIn como una prop
-
+const LoginView = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,7 +15,6 @@ const LoginView = ({ setIsLoggedIn }) => { // Añade setIsLoggedIn como una prop
   };
 
   const handleLoginSuccess = () => {
-    // Lógica para verificar el inicio de sesión
     setIsLoggedIn(true);
   };
 
@@ -43,8 +40,11 @@ const LoginView = ({ setIsLoggedIn }) => { // Añade setIsLoggedIn como una prop
           onChange={handlePasswordChange}
         />
         <br />
-        
-        <LoginController username={username} password={password} onLoginSuccess={handleLoginSuccess}/>
+        <LoginController
+          username={username}
+          password={password}
+          onLoginSuccess={handleLoginSuccess} // Pasar la función handleLoginSuccess como prop
+        />
       </div>
     </div>
   );
