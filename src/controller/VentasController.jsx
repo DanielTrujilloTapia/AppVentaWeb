@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../NuevaVenta.css';
 
 const VentasController = () => {
   const [productos, setProductos] = useState([]);
@@ -52,6 +53,14 @@ const VentasController = () => {
         setProductosVenta([...productosVenta, productoVenta]);
       }
     }
+  };
+  const eliminarProductoVenta = (idProducto) => {
+    const nuevosProductosVenta = productosVenta.filter(item => item.id_proproducto !== idProducto);
+    setProductosVenta(nuevosProductosVenta);
+  };
+
+  const limpiarCarrito = () => {
+    setProductosVenta([]);
   };
 
   const guardarVenta = async () => {
@@ -164,26 +173,33 @@ const VentasController = () => {
   };
 
   return (
-    <div>
-      <h2>Realizar Venta</h2>
-      <h3>Productos Disponibles:</h3>
-      <div>
+    <div style={{ display: 'flex' }}>
+      {/* Columna de productos disponibles */}
+      <div className="productos-disponibles">
+        <h2>Productos Disponibles:</h2>
         {productos.map(producto => (
-          <div key={producto.id_producto}>
+          <div key={producto.id_producto} className="producto-card">
             <span>{producto.nom_producto} - Precio: {producto.precio} - Stock: {producto.stock}</span>
-            <button onClick={() => agregarProductoVenta(producto.id_producto, 1)}>Agregar a la Venta</button>
+            <img src={producto.imagen} alt={producto.nom_producto} /> {/* Mostrar la imagen del producto */}
+            <button className="button" onClick={() => agregarProductoVenta(producto.id_producto, 1)}>Agregar a la Venta</button>
           </div>
         ))}
       </div>
-      <h3>Productos en la Venta:</h3>
-      <ul>
-        {productosVenta.map(productoVenta => (
-          <li key={productoVenta.id_proproducto}>
-            Producto: {productoVenta.nombre} - Cantidad: {productoVenta.cantidad} - Total: {productoVenta.total}
-          </li>
-        ))}
-      </ul>
-      <button onClick={guardarVenta}>Guardar Venta</button>
+      {/* Columna de finalización de venta */}
+      <div className="productos-en-venta">
+        <h2>Productos en la Venta:</h2>
+        <ul>
+          {productosVenta.map(productoVenta => (
+            <li key={productoVenta.id_proproducto} className="producto-card">
+              <img src={productoVenta.imagen} alt={productoVenta.nombre} /> {/* Mostrar la imagen del producto */}
+              Producto: {productoVenta.nombre} - Cantidad: {productoVenta.cantidad} - Total: {productoVenta.total}
+              <button className="button" onClick={() => eliminarProductoVenta(productoVenta.id_proproducto)}>Eliminar</button> {/* Botón para eliminar el producto */}
+            </li>
+          ))}
+        </ul>
+        <button className="button" onClick={guardarVenta}>Guardar Venta</button>
+        <button className="button" onClick={limpiarCarrito}>Limpiar Carrito</button> {/* Botón para limpiar el carrito */}
+      </div>
     </div>
   );
 };
