@@ -41,15 +41,7 @@ const NewProductoController = () => {
     event.preventDefault();
 
     try {
-      // Verificar si el producto ya existe
-      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?nombre=${nombreProducto}`);
-      const data = await response.json();
-      if (data.length > 0) {
-        setProductoExistente(true);
-        return;
-      }
-
-      // Si el producto no existe, enviar la solicitud para agregarlo
+      // Enviar la solicitud para agregar el producto
       const addResponse = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos', {
         method: 'POST',
         headers: {
@@ -89,7 +81,6 @@ const NewProductoController = () => {
     const { value } = event.target;
     if (value.length <= 50) {
       setNombreProducto(value);
-      setProductoExistente(false); // Reiniciar la bandera de producto existente cuando el nombre del producto cambia
     }
   };
 
