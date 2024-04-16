@@ -198,7 +198,7 @@ function ProductosController() {
         setProductosData(productosData.filter(producto => producto.id_producto !== productoId));
       }
     } catch (error) {
-      console.error('Error al eliminar el producto:', error);
+      console.error('El producto no se puede eliminar porque esta relacionado a una venta:', error);
     }
   };
   
