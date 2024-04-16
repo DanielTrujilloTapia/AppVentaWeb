@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import jsPDF from 'jspdf';
+import '../../VentasStyle.css';
 
 const VentasTallaController = () => {
   const [ventas, setVentas] = useState([]);
@@ -91,7 +92,6 @@ const VentasTallaController = () => {
             <th>ID Usuario</th>
             <th>Folio</th>
             <th>Fecha de Venta</th>
-            <th>ID Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -101,7 +101,6 @@ const VentasTallaController = () => {
               <td>{venta.id_usuusuario}</td>
               <td>{venta.folio}</td>
               <td>{new Date(venta.fecha_venta).toLocaleString()}</td>
-              <td>{venta.idvencatestado}</td>
             </tr>
           ))}
         </tbody>
@@ -132,7 +131,7 @@ const VentasTallaController = () => {
                 ))}
               </tbody>
             </table>
-            <button onClick={generatePDF}>Generar PDF del Ticket</button>
+            <button className="generate-pdf-button" onClick={generatePDF}>Generar PDF del Ticket</button>
           </div>
         </div>
       )}
