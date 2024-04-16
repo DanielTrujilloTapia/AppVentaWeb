@@ -35,16 +35,6 @@ const NewUserController = () => {
     event.preventDefault();
 
     try {
-      const isUsuarioExists = await checkUsuarioExists(nomUsuario);
-      if (isUsuarioExists) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Ya existe un usuario con este nombre. Por favor, elige otro nombre.'
-        });
-        return;
-      }
-
       const response = await fetch('https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios', {
         method: 'POST',
         headers: {
@@ -85,20 +75,6 @@ const NewUserController = () => {
     const { value } = event.target;
     if (value.length <= 10) {
       setContrasena(value);
-    }
-  };
-
-  const checkUsuarioExists = async (nomUsuario) => {
-    try {
-      const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios?nom_usuario=${nomUsuario}`);
-      if (!response.ok) {
-        throw new Error('Error fetching data');
-      }
-      const data = await response.json();
-      return data.length > 0;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return false;
     }
   };
 

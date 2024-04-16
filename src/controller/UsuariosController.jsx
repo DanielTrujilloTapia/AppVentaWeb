@@ -9,6 +9,9 @@ function UsuariosController() {
   const [selectedTipoUsuario, setSelectedTipoUsuario] = useState('');
   const [estadosUsuario, setEstadosUsuario] = useState([]);
   const [tiposUsuario, setTiposUsuario] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+  
 
   const apiUrlUsers = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Usuarios';
   const apiUrlTipos = 'https://mysqlventapunto20240409001954.azurewebsites.net/api/Usu_Cat_Tipos_Usuarios';
@@ -206,6 +209,24 @@ function UsuariosController() {
     window.location.href = '/crear';
   };
 
+  // Lógica para calcular el índice del primer y último elemento de la página actual
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = userData.slice(indexOfFirstItem, indexOfLastItem);
+
+
+// Lógica para cambiar la página actual
+const paginate = pageNumber => setCurrentPage(pageNumber);
+
+// Calcular los números de página
+const pageNumbers = [];
+for (let i = 1; i <= Math.ceil(userData.length / itemsPerPage); i++) {
+  pageNumbers.push(i);
+}
+
+
+  
+
   return (
     <div className="homead-controller-container">
       <h1>Tabla de Usuarios</h1>
@@ -252,7 +273,7 @@ function UsuariosController() {
           </tr>
         </thead>
         <tbody>
-          {userData.map(user => (
+          {currentItems.map(user => (
             <tr key={user.id_usuario}>
               <td>{user.nom_usuario}</td>
               <td>{user.contrasena}</td>
@@ -267,6 +288,13 @@ function UsuariosController() {
           ))}
         </tbody>
       </table>
+      <div className="pagination">
+        {pageNumbers.map(number => (
+          <button key={number} onClick={() => paginate(number)}>
+            {number}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

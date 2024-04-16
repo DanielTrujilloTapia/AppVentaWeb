@@ -89,3 +89,28 @@ font-weight: bold; /* Texto en negrita */
 
 
 /* Estilos para la tabla y otros elementos pueden ir aquí */
+
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination button {
+  font-size: 16px;
+  padding: 8px 12px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
