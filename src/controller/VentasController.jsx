@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const VentasController = () => {
-  const [idUsuario, setIdUsuario] = useState('');
   const [productos, setProductos] = useState([]);
   const [productosVenta, setProductosVenta] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     // Obtener productos desde la API al cargar el componente
@@ -17,6 +17,10 @@ const VentasController = () => {
       }
     };
     obtenerProductos();
+
+    const storedUserIdString = localStorage.getItem('user');
+    const storedUserId = JSON.parse(storedUserIdString);
+    setUserId(storedUserId);
   }, []);
 
   const agregarProductoVenta = (idProducto, cantidad) => {
@@ -25,12 +29,13 @@ const VentasController = () => {
       const productoExistente = productosVenta.find(item => item.id_proproducto === idProducto);
 
       if (productoExistente) {
-        // Si el producto ya está en la lista, incrementa la cantidad
+        // Si el producto ya está en la lista, incrementa la cantidad y actualiza el total
         const nuevosProductosVenta = productosVenta.map(item => {
           if (item.id_proproducto === idProducto) {
             return {
               ...item,
-              cantidad: item.cantidad + cantidad
+              cantidad: item.cantidad + cantidad,
+              total: (item.cantidad + cantidad) * producto.precio // Calcular el nuevo total
             };
           }
           return item;
@@ -61,7 +66,7 @@ const VentasController = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          id_usuusuario: idUsuario,
+          id_usuusuario: userId.id_usuario,
           folio: nuevoFolio,
           fecha_venta: new Date(),
           idvencatestado: 1
@@ -100,8 +105,39 @@ const VentasController = () => {
             });
           }));
 
+          await Promise.all(productosVenta.map(async productoVenta => {
+            const producto = productos.find(item => item.id_producto === productoVenta.id_proproducto);
+            if (producto) {
+              const nuevoStock = producto.stock - productoVenta.cantidad;
+              if (nuevoStock >= 0) {
+                try {
+                  const response = await fetch(`https://mysqlventapunto20240409001954.azurewebsites.net/api/Pro_Productos?id=${producto.id_producto}`, {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      ...producto,
+                      stock: nuevoStock
+                    })
+                  });
+                  if (!response.ok) {
+                    throw new Error(`Error al actualizar el producto con ID ${producto.id_producto}: ${response.statusText}`);
+                  }
+                  console.log(`Stock actualizado para el producto con ID ${producto.id_producto}. Nuevo stock: ${nuevoStock}`);
+                } catch (error) {
+                  console.error(`Error en la actualización del producto con ID ${producto.id_producto}:`, error);
+                }
+              } else {
+                console.error(`Error: El nuevo stock para el producto con ID ${producto.id_producto} no puede ser negativo.`);
+              }
+            } else {
+              console.error('Error: Producto no encontrado en la lista de productos.');
+            }
+          }));
+          
+
           // Limpiar datos después de guardar la venta
-          setIdUsuario('');
           setProductosVenta([]);
           alert('Venta guardada exitosamente');
         } else {
@@ -130,13 +166,11 @@ const VentasController = () => {
   return (
     <div>
       <h2>Realizar Venta</h2>
-      <label>Usuario ID:</label>
-      <input type="text" value={idUsuario} onChange={(e) => setIdUsuario(e.target.value)} />
       <h3>Productos Disponibles:</h3>
       <div>
         {productos.map(producto => (
           <div key={producto.id_producto}>
-            <span>{producto.nom_producto} - Precio: {producto.precio}</span>
+            <span>{producto.nom_producto} - Precio: {producto.precio} - Stock: {producto.stock}</span>
             <button onClick={() => agregarProductoVenta(producto.id_producto, 1)}>Agregar a la Venta</button>
           </div>
         ))}
